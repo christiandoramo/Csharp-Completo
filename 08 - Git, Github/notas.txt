@@ -1,0 +1,100 @@
+ver o que é head detached
+
+-u salva o comando de push origin main
+usando o git push -u origin main
+podendo apenas usar o git push
+agilizando
+
+git log --oneline
+diferentemente do git log, esse comando mostra apenas
+a parte dos histórico de versões referente a mensagem 
+de cada um dos commits feitos
+
+git restore - volta/descarta o projeto modificado no repo local para as modificações do ultimo commit
+Head - Ultimo commit feito (da Working tree = historico de commitadas ) pode ser escolhido/mudado
+
+
+git reset - apenas zera o stage adicionado
+
+selecionando separadamente os arquivos com o git add NomedoArquivo ou git add . para adicionar
+todos ao stage ( palco de para salvar no commit ) o git commit só entregará os elencados os addicionados
+os stageds
+
+git diff - mostra graficamente as mudanças nos arquivos ocorridos em relação ao arquivo commitado/stajado
+como o vs code faz só que não tão prático
+
+git checkout CódigoDaVersãoCommit
+Faz com  que se mude para o branch dessa versão escolhida no repositorio local
+
+branch - ramificação da working tree
+git checkout main - volta para para o branch do main(ultima versão principal) no repositório local
+
+Para corrigir erros de logica temporal
+git reset
+git clean -df
+git checkout -- .
+
+    git pull	origin  	main - recupera o historico working tree do repositorio origin (remoto) para o main (local)
+ nome do	remoto 	local
+git push 	origin 	main
+           	remoto 	local
+
+isso é ultil apos apagar versões e modificações
+após o uso do 
+git reset --hard HEAD~nUmerodeVersoesanterioresouOcódigoAntigodaversaodesejada
+git reset --soft HEAD~XXXX Não apaga as modificações feitas, apenas as versões, não modificando o arquivo
+no repositorio local, apenas o commit
+
+git ignore serve comumente para o GIT IGNORAR arquivos que não fazem parte do arquivo real
+como os executaveis de um projeto que são gerados automaticamente pelos compiladores
+recomendado sempre que compilar ou gerar um programa e der git commit fazer um git ignore
+já pre pronto copiado e colocado pois não é necessario decorar quais arquivos especificos devem
+ser especificamente ignorados
+é necessario fazer o git pull origin main de todo jeito e da o merge(mesclar)
+
+Quando se abre o VIM - um terminal unix? - aperta-se 'i' para iNSERIR (insert) alguma entrada no console.
+aperte esc e digite :wq (para salvar e Quitar) faz sair do VIM e voltar ao git bash
+
+CUIDADO! Se der o pull sem ter feito o commit do local ou sequer um add para o stage, de todo jeito haverá um merge
+mas ainda será necessario o stage, commit e push da versão local ao remoto
+
+nome da commit podia ser modificado no VIM>
+d323420 Merge branch 'main' of github.com:Forbiddome/Primeiro-Repositorio :# Please enter a commit message to explain why this merge is necessary,
+
+***essa resolução só é aplicada a historico em que não se modificam os mesmo arquivos pois existiria um conflito de qual modificação é a mais "válida"
+sendo necessario escolher a versao certa, o vs code ajuda
+
+git push -f origin main - (f- forçar) envia a força o commit ao remoto enviando o working tree do local passando completamente por cima do remoto
+podendo iniciar tudo de novo de uma versao antiga fazendo o git reset --hard HEAD~XouCODIGODAVERSOA
+e dps usando o git push -f origin main.
+
+ou então se usa o git push -f origin main  caso n queira fazer o merge mesmo
+
+git remote -v
+ve qual  o edereço gitorigin, ou seja o repo remoto
+
+git remote set-url origin ENDEREÇoHTTPSoucodigoSSHdonovoRepositorio
+esse comando muda o endereço do repositorio remoto podendo envia o repo local
+para outro repo. diferente do git remote add origin que adiciona uma origin que será util quando
+o repo remoto n existir mais!
+
+git push --force origin main DA ALGUM DEFEITO (APAGA ALGUM COMMIT) NO REPOSITORIO REMOTO
+
+COMO CRIAR UM GIT E MANDÁ-LO AO GITHUB-
+git init
+git add .
+git commit -m "Mensagem explicativa"
+git branch -M main
+git remote add origin git@github.com:seuusuario/seurepositorio.git
+git push -u origin main 
+
+COMO usar pela primeira vez um repositorio em outra máquina por SSH key
+
+primeiro se instala o gitbash
+agora se adiciona uma Senha SSH para a máquina atual acessar o repostorio remoto
+no git bash: crie o username e emai com git config --global user.nameOUemail "xxxxxx"
+entre na pasta .ssh criada pelo git
+ssh-keygen -t ed25519 -C "your_email@example.com" (ATENÇÃO - checar no GITHUB DOCS se não mudou o codigo de gerar senha ssh)
+adicione a senha SSH lá em Settings na conta Github (como se fosse uma máquina remota que vai verifica a senha da maquina local atual)
+agora va a pasta desejada no bash e faça o git clone e pronto
+
